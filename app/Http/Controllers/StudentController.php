@@ -14,10 +14,10 @@ class StudentController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Display a listing of the resource.
@@ -26,7 +26,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return User::where('1', '=', '1');
+        $students = Student::all();
+        return $students;
     }
 
     /**
@@ -47,7 +48,17 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        return "OK";
+//        $student = [
+//            'name'=> '',
+//            'email' => '',
+//            'ca' => '',
+//            'cpf' => '',
+//        ];
+
+        $payload = $request->all();
+
+        Student::create($payload);
+        return $payload;
     }
 
     /**
