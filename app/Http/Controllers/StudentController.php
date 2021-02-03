@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Student;
 
 class StudentController extends Controller
 {
@@ -24,7 +26,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return "OK";
+        return User::where('1', '=', '1');
     }
 
     /**
@@ -56,7 +58,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return "OK";
+        return Student::where('id', '=', $id);
     }
 
     /**
