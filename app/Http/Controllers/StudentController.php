@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\User;
 use App\Student;
 
 class StudentController extends Controller
@@ -27,7 +27,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
-        return $students;
+        return (string) $students;
     }
 
     /**
@@ -48,17 +48,10 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-//        $student = [
-//            'name'=> '',
-//            'email' => '',
-//            'ca' => '',
-//            'cpf' => '',
-//        ];
-
         $payload = $request->all();
 
-        Student::create($payload);
-        return $payload;
+        $student = Student::create($payload);
+        return (string) $student->get();
     }
 
     /**
@@ -69,7 +62,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return Student::where('id', '=', $id);
+        $student = Student::where('id', intval($id));
+        if (empty($student)) throw new ModelNotFoundException();
+        return (string) $student->get();
     }
 
     /**
@@ -80,7 +75,10 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        return "OK";
+        $student = Student::where('id', intval($id));
+        if (empty($student)) throw new ModelNotFoundException();
+
+        return (string) $student->get();
     }
 
     /**
@@ -92,7 +90,16 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "OK";
+        $payload = $request->all();
+
+        $id =Student::where('id', intval($id))
+            ->update($payload);
+
+        if (empty($id)) throw new ModelNotFoundException();
+
+
+        return $payload;
+
     }
 
     /**
@@ -103,6 +110,9 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        return "OK";
+        $var = Student::destroy(intval($id));
+        if (empty($var)) throw new ModelNotFoundException();
+
+        return $var;
     }
 }
