@@ -29,4 +29,4 @@ Deploy Back End (Heroku)
 - https://backendgrupoa.herokuapp.com/api/student
 
 Deploy Front End (netlify)
-- https://wizardly-perlman-0e9237.netlify.app/#/
+- https://keen-minsky-9d1607.netlify.app/#/
