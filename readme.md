@@ -14,7 +14,7 @@ O arquivo .env contem as configurações de acesso a base de dados.
 Mudançar nas configurações em ambientes produtos ou de desenvolvimento devem ser feitas, por hora, diretamente no heroku.
 
 
-Front end: https://github.com/arturbernardo/grupoaafrontend2
+Front end: https://github.com/arturbernardo/grupoabackend3
 
 
 ## Melhorias
